@@ -1,5 +1,13 @@
 # 🚀 Predictive Maintenance ML System (End-to-End Pipeline + API + Docker Deployment)
 
+![Python](https://img.shields.io/badge/python-3.10-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
+![Docker](https://img.shields.io/badge/docker-container-blue)
+![Render](https://img.shields.io/badge/deployed%20on-Render-46E3B7)
+![ML](https://img.shields.io/badge/Machine%20Learning-SMOTE-orange)
+
+---
+
 ## 📌 Overview
 
 This project implements a complete end-to-end machine learning system for predictive maintenance in industrial environments.
@@ -19,7 +27,25 @@ The system predicts:
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Architecture Overview
+
+```mermaid
+graph TD
+A[Raw Industrial Data] --> B[Data Cleaning]
+B --> C[Feature Engineering]
+C --> D[Encoding + Scaling]
+D --> E[SMOTE Balancing]
+E --> F[Model Training]
+F --> G[Cross Validation]
+G --> H[Model Serialization]
+H --> I[FastAPI Inference Layer]
+I --> J[Docker Container]
+J --> K[Render Deployment]
+```
+
+---
+
+## 🏗️ Project Structure
 
 ```
 ProductBehaviour/
@@ -40,7 +66,6 @@ ProductBehaviour/
 │   ├── machines2.ipynb
 │   ├── machinespipeline.ipynb
 │
-├── catboost_info/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -51,43 +76,92 @@ ProductBehaviour/
 
 ## 🧠 Machine Learning Pipeline
 
-Raw Data  
-→ Data Cleaning & Feature Engineering  
-→ Encoding (LabelEncoder)  
-→ Feature Scaling (StandardScaler)  
-→ SMOTE (Class balancing)  
-→ Train/Test Split (Stratified)  
-→ Model Training  
-→ Cross Validation (10-fold)  
-→ Evaluation (F1-score, Precision, Recall, Confusion Matrix)  
-→ Model Serialization  
-→ FastAPI Deployment  
-→ Docker Deployment  
+Raw Data → Cleaning → Feature Engineering → Encoding → Scaling → SMOTE → Train/Test Split → Model Training → Cross Validation → Evaluation → Serialization → API Deployment → Docker
 
 ---
 
 ## 🚀 FastAPI Service
 
-### 🔌 API Endpoint
+### 🔌 Endpoint Design (Improved)
 
-- **URL**: `/predict`
+- **Endpoint**: `/predict`
 - **Method**: `POST`
-- **Full URL (local)**: `http://127.0.0.1:8000/predict`
+- **Content-Type**: `application/json`
+
+### 💡 Design Improvements
+✔ Clean input schema validation (Pydantic)
+✔ Structured response format
+✔ Production-ready scalability
+✔ Input validation & error handling
 
 ---
 
-## 📥 Request & 📤 Response Example
+## 📥 Request & Response Examples
+
+### Example 1
 
 ```json
 {
-  "input": {
-    "features": [1, 298.4, 308.2, 1282, 60.7, 216]
-  },
-  "output": {
-    "failure": true,
-    "type": "Overstrain Failure"
-  }
+  "features": [1, 298.4, 308.2, 1282, 60.7, 216]
 }
+```
+
+```json
+{
+  "failure": true,
+  "type": "Overstrain Failure"
+}
+```
+
+---
+
+### Example 2
+
+```json
+{
+  "features": [1, 298.4, 308.2, 1282, 60.7, 100]
+}
+```
+
+```json
+{
+  "failure": false
+}
+```
+
+---
+
+### Example 3
+
+```json
+{
+  "features": [1, 295, 400, 770, 70, 216]
+}
+```
+
+```json
+{
+  "failure": true,
+  "type": "Power Failure"
+}
+```
+
+---
+
+## 🧪 API Usage (cURL)
+
+### Local
+```bash
+curl -X POST "http://127.0.0.1:10000/predict" \
+-H "Content-Type: application/json" \
+-d '{"features": [1, 298.4, 308.2, 1282, 60.7, 216]}'
+```
+
+### Production (Render)
+```bash
+curl -X POST "https://predictive-maintenance-ml-system.onrender.com/predict" \
+-H "Content-Type: application/json" \
+-d '{"features": [1, 298.4, 308.2, 1282, 60.7, 216]}'
 ```
 
 ---
@@ -99,12 +173,12 @@ Raw Data
 docker build -t predictive-maintenance-api .
 ```
 
-### ▶️ Run Container
+### ▶️ Run Container (Local)
 ```bash
-docker run -p 8000:8000 predictive-maintenance-api
+docker run -p 10000:10000 predictive-maintenance-api
 ```
 
-### 🔁 Docker Compose (Recommended)
+### 🔁 Docker Compose
 ```bash
 docker compose up --build
 ```
@@ -113,44 +187,37 @@ docker compose up --build
 
 ## 🌐 Access API
 
-Swagger UI:
-http://127.0.0.1:8000/docs
+### Local
+- Swagger UI: http://127.0.0.1:10000/docs
+
+### 🚀 Production (Render)
+- API: https://predictive-maintenance-ml-system.onrender.com
+- Docs: https://predictive-maintenance-ml-system.onrender.com/docs
 
 ---
 
 ## ☁️ Deployment Strategy
 
 - Render (Docker deployment)
-- GitHub Actions (CI/CD pipeline)
-- Docker (containerization)
+- GitHub (source control)
+- CI/CD ready (GitHub Actions compatible)
 
 ---
 
 ## 🔁 CI/CD Ready Design
 
-- Automated build
-- Automated testing (future extension)
-- Automatic deployment on push to main
-
----
-
-## 📌 Key Highlights
-
-✔ End-to-end ML pipeline  
-✔ Dual model architecture  
-✔ SMOTE handling  
-✔ FastAPI production API  
-✔ Dockerized deployment  
-✔ CI/CD ready  
+✔ Auto build on push
+✔ Docker-based deployment
+✔ Ready for future testing pipeline extension
 
 ---
 
 ## 📊 Business Value
 
-- Predict machine failures early  
-- Reduce downtime  
-- Optimize maintenance cost  
-- Improve industrial reliability  
+- Predict machine failures early
+- Reduce downtime costs
+- Improve industrial efficiency
+- Enable predictive maintenance strategies
 
 ---
 
@@ -158,3 +225,12 @@ http://127.0.0.1:8000/docs
 
 Email: dhiasomai@gmail.com  
 LinkedIn: https://www.linkedin.com/in/dhia-somai-
+
+---
+
+## ⚠️ Notes
+
+- Local runs on port 10000
+- Production uses dynamic Render port ($PORT)
+- FastAPI ensures scalable inference layer
+
