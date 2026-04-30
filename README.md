@@ -1,4 +1,4 @@
-# 🚀 Predictive Maintenance ML System (End-to-End Pipeline + API + Docker Deployment)
+# Predictive Maintenance ML System (End-to-End Pipeline + API + Docker Deployment)
 
 ![Python](https://img.shields.io/badge/python-3.10-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
@@ -6,9 +6,8 @@
 ![Render](https://img.shields.io/badge/deployed%20on-Render-46E3B7)
 ![ML](https://img.shields.io/badge/Machine%20Learning-SMOTE-orange)
 
----
 
-## 📌 Overview
+## Overview
 
 This project implements a complete end-to-end machine learning system for predictive maintenance in industrial environments.
 
@@ -25,9 +24,8 @@ The system predicts:
 1. Whether a machine will fail (binary classification)
 2. Type of failure (multi-class classification)
 
----
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```mermaid
 graph TD
@@ -43,60 +41,25 @@ I --> J[Docker Container]
 J --> K[Render Deployment]
 ```
 
----
 
-## 🏗️ Project Structure
 
-```
-ProductBehaviour/
-├── app/
-│   ├── main.py
-│   ├── schemas.py
-│
-├── data/
-│   └── predictive_maintenance.csv
-│
-├── models/
-│   ├── binary_model.cbm
-│   ├── multi_model.json
-│   └── scaler.pkl
-│
-├── notebooks/
-│   ├── machines.ipynb
-│   ├── machines2.ipynb
-│   ├── machinespipeline.ipynb
-│
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
-```
+## FastAPI Service
 
----
-
-## 🧠 Machine Learning Pipeline
-
-Raw Data → Cleaning → Feature Engineering → Encoding → Scaling → SMOTE → Train/Test Split → Model Training → Cross Validation → Evaluation → Serialization → API Deployment → Docker
-
----
-
-## 🚀 FastAPI Service
-
-### 🔌 Endpoint Design (Improved)
+### Endpoint Design (Improved)
 
 - **Endpoint**: `/predict`
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 
-### 💡 Design Improvements
+### Design Improvements
 ✔ Clean input schema validation (Pydantic)
 ✔ Structured response format
 ✔ Production-ready scalability
 ✔ Input validation & error handling
 
----
 
-## 📥 Request & Response Examples
+
+## Request & Response Examples
 
 ### Example 1
 
@@ -113,7 +76,7 @@ Raw Data → Cleaning → Feature Engineering → Encoding → Scaling → SMOTE
 }
 ```
 
----
+
 
 ### Example 2
 
@@ -129,7 +92,7 @@ Raw Data → Cleaning → Feature Engineering → Encoding → Scaling → SMOTE
 }
 ```
 
----
+
 
 ### Example 3
 
@@ -146,9 +109,9 @@ Raw Data → Cleaning → Feature Engineering → Encoding → Scaling → SMOTE
 }
 ```
 
----
 
-## 🧪 API Usage (cURL)
+
+## API Usage (cURL)
 
 ### Local
 ```bash
@@ -164,71 +127,71 @@ curl -X POST "https://predictive-maintenance-ml-system.onrender.com/predict" \
 -d '{"features": [1, 298.4, 308.2, 1282, 60.7, 216]}'
 ```
 
----
 
-## 🐳 Docker Setup
 
-### 🔨 Build Image
+## Docker Setup
+
+### Build Image
 ```bash
 docker build -t predictive-maintenance-api .
 ```
 
-### ▶️ Run Container (Local)
+### Run Container (Local)
 ```bash
 docker run -p 10000:10000 predictive-maintenance-api
 ```
 
-### 🔁 Docker Compose
+### Docker Compose
 ```bash
 docker compose up --build
 ```
 
----
 
-## 🌐 Access API
+
+## Access API
 
 ### Local
 - Swagger UI: http://127.0.0.1:10000/docs
 
-### 🚀 Production (Render)
+### Production (Render)
 - API: https://predictive-maintenance-ml-system.onrender.com
 - Docs: https://predictive-maintenance-ml-system.onrender.com/docs
 
----
 
-## ☁️ Deployment Strategy
+
+## Deployment Strategy
 
 - Render (Docker deployment)
 - GitHub (source control)
 - CI/CD ready (GitHub Actions compatible)
 
----
 
-## 🔁 CI/CD Ready Design
+
+## CI/CD Ready Design
 
 ✔ Auto build on push
 ✔ Docker-based deployment
 ✔ Ready for future testing pipeline extension
 
----
 
-## 📊 Business Value
+
+## Business Value
 
 - Predict machine failures early
 - Reduce downtime costs
 - Improve industrial efficiency
 - Enable predictive maintenance strategies
 
----
 
-## 📬 Contact
+
+## Contact
 
 Email: dhiasomai@gmail.com  
 LinkedIn: https://www.linkedin.com/in/dhia-somai-
 
----
 
-## ⚠️ Notes
+
+## Notes
 
 - Local runs on port 10000
 - Production uses dynamic Render port ($PORT)

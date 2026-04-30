@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🐍 Setup Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      - name: 🧠 Set PYTHONPATH
+      - name: Set PYTHONPATH
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
 
-      - name: 🧪 Run tests
+      - name: Run tests
         run: pytest -v
 
   docker:
@@ -32,12 +32,12 @@ jobs:
     needs: test
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🐳 Build Docker image
+      - name: Build Docker image
         run: docker build -t predictive-maintenance-api .
 
-      - name: 🧪 Run tests inside Docker
+      - name: Run tests inside Docker
         run: |
           docker run predictive-maintenance-api sh -c "pytest -v"
