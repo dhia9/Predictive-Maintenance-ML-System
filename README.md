@@ -48,12 +48,6 @@ J --> K[Render Deployment]
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 
-### Design Improvements
-✔ Clean input schema validation (Pydantic)
-✔ Structured response format
-✔ Production-ready scalability
-✔ Input validation & error handling
-
 ## Request & Response Examples
 
 ### Example 1
