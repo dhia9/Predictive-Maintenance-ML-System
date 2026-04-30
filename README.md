@@ -24,7 +24,6 @@ The system predicts:
 1. Whether a machine will fail (binary classification)
 2. Type of failure (multi-class classification)
 
-
 ## Architecture Overview
 
 ```mermaid
@@ -41,8 +40,6 @@ I --> J[Docker Container]
 J --> K[Render Deployment]
 ```
 
-
-
 ## FastAPI Service
 
 ### Endpoint Design (Improved)
@@ -56,8 +53,6 @@ J --> K[Render Deployment]
 ✔ Structured response format
 ✔ Production-ready scalability
 ✔ Input validation & error handling
-
-
 
 ## Request & Response Examples
 
@@ -76,8 +71,6 @@ J --> K[Render Deployment]
 }
 ```
 
-
-
 ### Example 2
 
 ```json
@@ -91,8 +84,6 @@ J --> K[Render Deployment]
   "failure": false
 }
 ```
-
-
 
 ### Example 3
 
@@ -109,8 +100,6 @@ J --> K[Render Deployment]
 }
 ```
 
-
-
 ## API Usage (cURL)
 
 ### Local
@@ -126,8 +115,6 @@ curl -X POST "https://predictive-maintenance-ml-system.onrender.com/predict" \
 -H "Content-Type: application/json" \
 -d '{"features": [1, 298.4, 308.2, 1282, 60.7, 216]}'
 ```
-
-
 
 ## Docker Setup
 
@@ -146,8 +133,6 @@ docker run -p 10000:10000 predictive-maintenance-api
 docker compose up --build
 ```
 
-
-
 ## Access API
 
 ### Local
@@ -157,23 +142,17 @@ docker compose up --build
 - API: https://predictive-maintenance-ml-system.onrender.com
 - Docs: https://predictive-maintenance-ml-system.onrender.com/docs
 
-
-
 ## Deployment Strategy
 
 - Render (Docker deployment)
 - GitHub (source control)
 - CI/CD ready (GitHub Actions compatible)
 
-
-
 ## CI/CD Ready Design
 
 ✔ Auto build on push
 ✔ Docker-based deployment
 ✔ Ready for future testing pipeline extension
-
-
 
 ## Business Value
 
@@ -182,14 +161,10 @@ docker compose up --build
 - Improve industrial efficiency
 - Enable predictive maintenance strategies
 
-
-
 ## Contact
 
 Email: dhiasomai@gmail.com  
 LinkedIn: https://www.linkedin.com/in/dhia-somai-
-
-
 
 ## Notes
 
